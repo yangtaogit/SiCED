@@ -1,5 +1,5 @@
 # SiCED
-Gent4 simulation project for Sr90 source energy deposition in SiC
+Gent4 simulation project for energy deposition for Sr90 source  in SiC
 
 ## Setup
 
