@@ -22,8 +22,8 @@ SiCEDRunAction::SiCEDRunAction()
 : G4UserRunAction(),
   fTotalEdep(0.)
 { 
-  // set printing event number per each event
-  G4RunManager::GetRunManager()->SetPrintProgress(1);
+  // print every 10000 events to avoid flooding output
+  G4RunManager::GetRunManager()->SetPrintProgress(10000);
 
   // add new units for SiCED
   // 
@@ -80,8 +80,11 @@ void SiCEDRunAction::BeginOfRunAction(const G4Run* run)
   // Get analysis manager
   auto analysisManager = G4AnalysisManager::Instance();
 
-  // Open an output file
-  G4String fileName = "SiCED_5um";
+  // Build output filename: material + energy label (set in run macro)
+  auto det = static_cast<const SiCEDDetectorConstruction*>(
+    G4RunManager::GetRunManager()->GetUserDetectorConstruction());
+  G4String fileName = "SiCED_100um_" + det->GetMaterialName()
+                    + "_" + det->GetEnergyLabel() + ".root";
   analysisManager->OpenFile(fileName);
 
   // inform the runManager to save random number seed

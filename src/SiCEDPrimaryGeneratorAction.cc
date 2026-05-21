@@ -32,7 +32,7 @@ SiCEDPrimaryGeneratorAction::SiCEDPrimaryGeneratorAction()
   fParticleGun->SetParticleDefinition(particle);
   fParticleGun->SetParticlePosition(G4ThreeVector(0.*cm,0.*cm,0.5*cm));
 
-  fParticleGun->SetParticleEnergy(0.546*MeV);
+  fParticleGun->SetParticleEnergy(2.2*MeV);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

@@ -1,0 +1,7 @@
+# Run macro: electrons through 100 um Silicon Carbide
+# To change energy: edit /gun/energy and /SiCED/det/setEnergyLabel together
+/SiCED/det/setMaterial SiC
+/SiCED/det/setEnergyLabel 2200keV
+/run/initialize
+/gun/energy 2.2 MeV
+/run/beamOn 100000

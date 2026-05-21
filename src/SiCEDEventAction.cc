@@ -26,7 +26,8 @@ SiCEDEventAction::~SiCEDEventAction()
 void SiCEDEventAction::BeginOfEventAction(const G4Event* event)
 {    
     G4int eventID = event->GetEventID();
-    G4cout << "\n---> Begin of event: " << eventID << G4endl;
+    if (eventID % 10000 == 0)
+      G4cout << "\n---> Begin of event: " << eventID << G4endl;
 
     edep_total=0.;
     edep_device=0.;
@@ -48,9 +49,11 @@ void SiCEDEventAction::EndOfEventAction(const G4Event* event)
     py = event->GetPrimaryVertex(0)->GetPrimary()->GetPy();
     pz = event->GetPrimaryVertex(0)->GetPrimary()->GetPz();
 
-    x_device = x_EdepC_device/edep_device;
-    y_device = y_EdepC_device/edep_device;
-    z_device = z_EdepC_device/edep_device;
+    if (edep_device > 0.) {
+      x_device = x_EdepC_device/edep_device;
+      y_device = y_EdepC_device/edep_device;
+      z_device = z_EdepC_device/edep_device;
+    }
   
     auto analysisManager = G4AnalysisManager::Instance();
     analysisManager->FillNtupleDColumn(0, eventID);
@@ -69,7 +72,8 @@ void SiCEDEventAction::EndOfEventAction(const G4Event* event)
     analysisManager->AddNtupleRow();
 
 
-    G4cout << "\n---> End of event: " << eventID << G4endl;
+    if (eventID % 10000 == 0)
+      G4cout << "\n---> End of event: " << eventID << G4endl;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

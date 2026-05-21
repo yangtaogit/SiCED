@@ -1,0 +1,12 @@
+# Build directory
+build/
+
+# Geant4 simulation output
+*.root
+*.png
+*.csv
+*.dat
+
+# Geant4 runtime files
+g4_*.rndm
+*.rndm
